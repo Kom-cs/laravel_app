@@ -1,17 +1,19 @@
 <?php
 
 namespace App\Http\Controllers; //異なる名前空間内でなら同じ名前のクラスの定義が可能。
-
 use Illuminate\Http\Request; //use ＝ クラスの呼び出し + クラスを呼び出すパスの簡略化
 use App\Todo;
 use App\User;
 use Auth;
 
+
+
 class TodoController extends Controller
 {
+
     private $todo; // $this = TodoController
 
-    public function __construct(Todo $instanceClass, User $userClass) //Todo＝モデルを継承したクラス。
+    public function __construct(Todo $instanceClass) //Todo＝モデルを継承したクラス。
     {
         $this->middleware('auth'); //authをmiddlewareに登録。。。非ログイン時にログインページに飛ばす(Authenticate.php)
         $this->todo = $instanceClass; // $this->todo = $todo
@@ -95,6 +97,8 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function destroy($id) //idで指定したリソースデータを消去する際の処理を定義
     {
         $this->todo->find($id)->delete(); //idに紐づいたデータの消去を実行する部分
