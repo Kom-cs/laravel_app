@@ -4,13 +4,14 @@ namespace App\Http\Controllers; //異なる名前空間内でなら同じ名前�
 
 use Illuminate\Http\Request; //use ＝ クラスの呼び出し + クラスを呼び出すパスの簡略化
 use App\Todo;
+use App\User;
 use Auth;
 
 class TodoController extends Controller
 {
     private $todo; // $this = TodoController
 
-    public function __construct(Todo $instanceClass) //Todo＝モデルを継承したクラス。
+    public function __construct(Todo $instanceClass, User $userClass) //Todo＝モデルを継承したクラス。
     {
         $this->middleware('auth'); //authをmiddlewareに登録。。。非ログイン時にログインページに飛ばす(Authenticate.php)
         $this->todo = $instanceClass; // $this->todo = $todo
