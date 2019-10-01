@@ -48,7 +48,7 @@ class TodoController extends Controller
         $input = $request->all(); //inputタグで送った内容
         $input['user_id'] = Auth::id(); //id取得してuser_idに代入
         $this->todo->fill($input)->save(); //save()でbooleanを返す。attributes＝属性。$input = [_token, title, user_id]
-        return redirect()->to('todo'); //redirect()のデフォルトメソッドがGET,URI＝todo
+        return redirect()->route('todo.index'); //redirect()のデフォルトメソッドがGET,URI＝todo
     }
 
     /**
@@ -85,7 +85,7 @@ class TodoController extends Controller
     {
         $input = $request->all(); //inputタグで送信するために定義した内容
         $this->todo->find($id)->fill($input)->save(); //$fillableで定義した内容を保存
-        return redirect()->to('todo'); //todoページに戻る...redirect()のデフォルトメソッドがGET
+        return redirect()->route('todo.index'); //todoページに戻る...redirect()のデフォルトメソッドがGET
     }
 
     /**
@@ -97,6 +97,6 @@ class TodoController extends Controller
     public function destroy($id) //idで指定したリソースデータを消去する際の処理を定義
     {
         $this->todo->find($id)->delete(); //idに紐づいたデータの消去を実行する部分
-        return redirect()->to('todo'); //todoに戻る...redirect()のデフォルトメソッドがGET
+        return redirect()->route('todo.index'); //todoに戻る...redirect()のデフォルトメソッドがGET
     }
 }
