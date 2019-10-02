@@ -3,7 +3,6 @@
 namespace App\Http\Controllers; //異なる名前空間内でなら同じ名前のクラスの定義が可能。
 use Illuminate\Http\Request; //use ＝ クラスの呼び出し + クラスを呼び出すパスの簡略化
 use App\Todo;
-use App\User;
 use Auth;
 
 
