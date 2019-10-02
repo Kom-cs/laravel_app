@@ -5,8 +5,6 @@ use Illuminate\Http\Request; //use ＝ クラスの呼び出し + クラスを�
 use App\Todo;
 use Auth;
 
-
-
 class TodoController extends Controller
 {
 
@@ -26,7 +24,8 @@ class TodoController extends Controller
     public function index()
     {
         $todos = $this->todo->getByUserId(Auth::id()); //Authクラス内のメソッドによる認証ID取得 facadeで簡単にクラスを呼び出せる
-        return view('todo.index', compact('todos')); //view(ディレクトリ, 使うデータ)
+        $userName = Auth::user()->name;
+        return view('todo.index', compact('todos', 'userName')); //view(ディレクトリ, 使うデータ)
     }
 
     /**
